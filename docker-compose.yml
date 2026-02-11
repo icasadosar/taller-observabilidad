@@ -17,6 +17,9 @@ services:
     image: grafana/grafana:latest
     ports:
       - "3001:3000"
+    volumes:
+      - ./grafana/provisioning/dashboards/dashboard_provider.yml:/etc/grafana/provisioning/dashboards/provider.yml
+      - ./grafana/provisioning/dashboards/docker_monitor.json:/var/lib/grafana/dashboards/docker_monitor.json
     environment:
       - GF_SECURITY_ADMIN_PASSWORD=admin
   promtail:
@@ -28,3 +31,16 @@ services:
       command: -config.file=/etc/promtail/config.yml
       depends_on:
         - loki
+  cadvisor:
+      image: gcr.io/cadvisor/cadvisor:latest
+      container_name: cadvisor
+      ports:
+        - "8080:8080"
+      volumes:
+        - /:/rootfs:ro
+        - /var/run:/var/run:ro
+        - /sys:/sys:ro
+        - /var/lib/docker/:/var/lib/docker:ro
+        - /dev/disk/:/dev/disk:ro
+      devices:
+        - /dev/kmsg
