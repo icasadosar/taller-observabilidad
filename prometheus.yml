@@ -4,6 +4,9 @@ scrape_configs:
   - job_name: 'api-service'
     static_configs:
       - targets: ['api-app:3000']
+  - job_name: 'api-service-2'
+    static_configs:
+      - targets: ['api-app-2:3000']
   - job_name: 'cadvisor'
     static_configs:
       - targets: ['cadvisor:8080']
