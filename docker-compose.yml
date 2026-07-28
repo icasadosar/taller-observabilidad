@@ -25,6 +25,8 @@ services:
       - ./grafana/provisioning/dashboards/dashboard_provider.yml:/etc/grafana/provisioning/dashboards/provider.yml
       - ./grafana/provisioning/dashboards/latencia_servicios.json:/var/lib/grafana/dashboards/latencia_servicios.json
       - ./grafana/provisioning/dashboards/docker_monitor.json:/var/lib/grafana/dashboards/docker_monitor.json
+      - ./grafana/provisioning/dashboards/9578_rev4.json:/var/lib/grafana/dashboards/9578_rev4.json
+      - ./grafana/provisioning/dashboards/Prueba.json:/var/lib/grafana/dashboards/Prueba.json
       - ./grafana/provisioning/datasources/datasources.yml:/etc/grafana/provisioning/datasources/datasources.yml
     environment:
       - GF_SECURITY_ADMIN_PASSWORD=admin
